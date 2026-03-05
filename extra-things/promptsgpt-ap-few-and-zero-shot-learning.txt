@@ -1,0 +1,174 @@
+## CON CÓDIGO V1 ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad.
+
+ 
+ 
+ 
+Al final de este mensaje te he adjuntado un texto correspondiente a un PDF con material teórico importante para la práctica.
+ 
+ 
+Asimismo, al final de este prompt te adjunto todo el código de un archivo .ipynb de la práctica la cual contiene toda la información acerca de las tareas a realizar.
+
+
+
+ 
+ 
+ 
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+ 
+
+ 
+"
+
+ 
+ 
+---- IMPORTANTE ----
+
+Debes de darme todo el código completo para completar esta tarea.
+
+Debes de asegurarte de que la respuesta que me das sea coherente con los ejemplos que aparecen en el PDF del material teórico que te he adjuntado. 
+ 
+ 
+ 
+Te adjunto también la siguiente información: 
+ 
+
+---- REQUERIMIENTOS DE LA PRÁCTICA ----
+ 
+  
+
+
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
+ 
+  
+
+
+ 
+ 
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
+ 
+
+
+ 
+---------------------------------------------------------
+
+
+Debes de darme el código exacto que tengo que escribir para completar
+de forma exacta y precisa cada uno de los "TODO" que aparecen en esta celda de código:
+ 
+  
+' 
+
+ 
+'
+
+
+
+---------------------------------------------------------
+
+
+## ESCRIBIR PÁRRAFOS V1 ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad.
+
+ 
+ 
+ 
+Al final de este mensaje te he adjuntado un texto correspondiente a un PDF con material teórico importante para la práctica.
+ 
+ 
+Asimismo, al final de este prompt te adjunto todo el código de un archivo .ipynb de la práctica la cual contiene toda la información acerca de las tareas a realizar.
+
+
+
+ 
+ 
+ 
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+ 
+
+ 
+"
+
+
+ 
+ 
+ 
+---- IMPORTANTE ----
+
+Debes de darme la respuesta en forma de párrafo y para que pueda ser copiada y pegada en un fichero .txt.
+Debes de emplerar un registro formal y académico.
+
+
+Debes de asegurarte de que la respuesta que me das sea coherente con los ejemplos que aparecen en el PDF del material teórico que te he adjuntado. 
+ 
+ 
+ 
+Te adjunto también la siguiente información: 
+ 
+
+---- REQUERIMIENTOS DE LA PRÁCTICA ----
+ 
+  
+
+
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
+ 
+  
+
+
+ 
+ 
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
+ 
+
+
+
+
+---------------------------------------------------------
+
+
+## MODIFICAR MEJORAS ##
+ 
+
+
+Supón que eres un experto en Inte

@@ -1,0 +1,319 @@
+# Deep Learning - FSL assignment
+
+
+
+The goal of this assignment is training a prototypical neural network with the Omniglot dataset using episodic learning. Once trained, we will evaluate its accuracy on the test set.
+
+We begin declaring the required libraries and setting the hyperparameters
+
+
+
+
+import random
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+from torch.utils.data import Dataset, DataLoader
+from torchvision.datasets import Omniglot
+import torchvision.transforms as transforms
+
+# --------------------------
+# Hyperparameters and settings
+# --------------------------
+k_way = 5         # number of classes per episode
+n_support = 5     # number of support examples per class
+n_query = 15      # number of query examples per class
+
+episodes_per_epoch = 100 # number of episodes per epoch
+num_epochs = 20  # number of epochs
+learning_rate = 0.001 # initial lr
+data_root = './data'  # directory to store/download Omniglot
+
+# Number of test episodes for evaluation.
+test_episodes = 600
+
+
+
+The [Omniglot data set](https://github.com/brendenlake/omniglot) contains 50 alphabets. We split these into a background set of 30 alphabets and an evaluation set of 20 alphabets. Each of the 1623 characters was drawn online via Amazon's Mechanical Turk by 20 different people.
+
+
+We prepare the data for episodic learning
+
+
+
+# --------------------------
+# Episodic Dataset for Omniglot
+# --------------------------
+class OmniglotEpisodicDataset(Dataset):
+    """
+    This dataset creates episodes for few-shot learning from the Omniglot dataset.
+    Each episode randomly selects k_way classes and for each class samples
+    n_support support examples and n_query query examples.
+    """
+    def __init__(self, root, transform, k_way, n_support, n_query, background=True):
+        self.dataset = Omniglot(root=root, background=background, download=True, transform=transform)
+        self.k_way = k_way
+        self.n_support = n_support
+        self.n_query = n_query
+
+        # Build a dictionary mapping each class to the list of indices.
+        self.classes = {}
+        for idx, (_, label) in enumerate(self.dataset):
+            if label not in self.classes:
+                self.classes[label] = []
+            self.classes[label].append(idx)
+        self.keys = list(self.classes.keys())
+
+    def __len__(self):
+        # We generate episodes on the fly so return a large number.
+        return 100000
+
+    def __getitem__(self, index):
+        # Randomly sample k_way classes.
+        selected_classes = random.sample(self.keys, self.k_way)
+        support_images = []
+        support_labels = []
+        query_images = []
+        query_labels = []
+
+        # For each selected class, sample support and query examples.
+        for new_label, cls in enumerate(selected_classes):
+            indices = self.classes[cls]
+            # Sample without replacement a total of n_support + n_query images.
+            selected_indices = random.sample(indices, self.n_support + self.n_query)
+            support_idx = selected_indices[:self.n_support]
+            query_idx = selected_indices[self.n_support:]
+            for idx in support_idx:
+                img, _ = self.dataset[idx]
+                support_images.append(img)
+                support_labels.append(new_label)
+            for idx in query_idx:
+                img, _ = self.dataset[idx]
+                query_images.append(img)
+                query_labels.append(new_label)
+
+        # Stack images into tensors.
+        support_images = torch.stack(support_images, dim=0)
+        support_labels = torch.tensor(support_labels)
+        query_images = torch.stack(query_images, dim=0)
+        query_labels = torch.tensor(query_labels)
+        return support_images, support_labels, query_images, query_labels
+
+
+
+Model definition. A simple CNN with 4 blocks is used.
+
+
+
+# --------------------------
+# Prototypical Network Model
+# --------------------------
+class ProtoNet(nn.Module):
+    """
+    A simple convolutional encoder that maps images into an embedding space.
+    Typically, a 4-block ConvNet is used for Omniglot.
+    """
+    def __init__(self, x_dim=1, hid_dim=64, z_dim=64):
+        """
+        x_dim: number of input channels (1 for grayscale)
+        hid_dim: number of hidden channels
+        z_dim: dimension of the final embedding
+        """
+        super(ProtoNet, self).__init__()
+        self.encoder = nn.Sequential(
+            # Block 1
+            nn.Conv2d(x_dim, hid_dim, kernel_size=3, padding=1),
+            nn.BatchNorm2d(hid_dim),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            # Block 2
+            nn.Conv2d(hid_dim, hid_dim, kernel_size=3, padding=1),
+            nn.BatchNorm2d(hid_dim),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            # Block 3
+            nn.Conv2d(hid_dim, hid_dim, kernel_size=3, padding=1),
+            nn.BatchNorm2d(hid_dim),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            # Block 4
+            nn.Conv2d(hid_dim, z_dim, kernel_size=3, padding=1),
+            nn.BatchNorm2d(z_dim),
+            nn.ReLU(),
+            nn.MaxPool2d(2)
+        )
+
+    def forward(self, x):
+        """
+        Forward pass: input x shape: [batch, channels, height, width]
+        Returns: embeddings of shape [batch, z_dim]
+        """
+        out = self.encoder(x)
+        return out.view(out.size(0), -1)
+
+
+
+
+Training function
+
+
+# --------------------------
+# Training Function for one Epoch
+# --------------------------
+def train(model, optimizer, dataloader, device):
+    model.train()
+    total_loss = 0.0
+
+    # We iterate over episodes (each batch here is one episode)
+    for batch_idx, (support_images, support_labels, query_images, query_labels) in enumerate(dataloader):
+        support_images = support_images.squeeze(0).to(device)  # shape: [k_way*n_support, C, H, W]
+        support_labels = support_labels.squeeze(0).to(device)
+        query_images = query_images.squeeze(0).to(device)      # shape: [k_way*n_query, C, H, W]
+        query_labels = query_labels.squeeze(0).to(device)
+
+        optimizer.zero_grad()
+
+        # Compute embeddings for support and query images.
+        embeddings_support = model(support_images)  # shape: [k_way*n_support, z_dim]
+        # TODO: Compute embeddings for query images
+
+        # Compute prototypes.
+        embedding_dim = embeddings_support.size(-1)
+        embeddings_support = embeddings_support.view(k_way, n_support, embedding_dim)
+        # TODO: Compute prototype (mean embedding support) for each class.
+
+        # TODO: Compute squared Euclidean distances between each query embedding and each prototype.
+
+        # TODO: Convert distances to logits by taking the negative distance.
+        logits = -distances  # shape: [k_way*n_query, k_way]
+
+        # TODO: Compute the cross-entropy loss using the logits and query labels and store it into the variable `loss`.
+
+        loss.backward()
+        optimizer.step()
+
+        total_loss += loss.item()
+
+        if (batch_idx + 1) % 10 == 0:
+            print(f"Episode {batch_idx+1}/{episodes_per_epoch}, Loss: {loss.item():.4f}")
+
+        if batch_idx + 1 >= episodes_per_epoch:
+            break
+
+    avg_loss = total_loss / episodes_per_epoch
+    return avg_loss
+
+
+
+Let's run training and check that it works properly.
+
+
+
+# Set device: use GPU if available.
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# Define transformations: resize to 28x28, convert to tensor and normalize.
+transform = transforms.Compose([
+    transforms.Resize((28, 28)),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
+
+# Create the episodic training dataset (using the background set).
+train_dataset = OmniglotEpisodicDataset(
+      root=data_root,
+      transform=transform,
+      k_way=k_way,
+      n_support=n_support,
+      n_query=n_query,
+      background=True  # use the background set for training
+)
+
+# Since each __getitem__ returns one episode, set batch_size=1.
+train_loader = DataLoader(train_dataset, batch_size=1, shuffle=True)
+
+# Initialize the model and optimizer.
+model = ProtoNet(x_dim=1, hid_dim=64, z_dim=64).to(device)
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+# Training loop.
+for epoch in range(1, num_epochs + 1):
+    avg_loss = train(model, optimizer, train_loader, device)
+    print(f"Epoch {epoch}/{num_epochs}, Average Loss: {avg_loss:.4f}")
+
+# Save the model. We comment the following line so the notebook won't be too large for the submission
+#torch.save(model.state_dict(), "protonet_omniglot.pth")
+print("Training complete and model saved.")
+
+Once we have trained our model, we can evaluate it using the Omniglot test set. Since we only trained the embeddings, nearest neighbour is necessary to obtain the class.
+
+
+# --------------------------
+# Evaluation Function
+# --------------------------
+def evaluate(model, dataloader, device):
+    """
+    Evaluate the model over episodes and return the average query accuracy.
+    """
+    model.eval()
+    total_acc = 0.0
+    total_episodes = 0
+
+    with torch.no_grad():
+        for batch_idx, (support_images, support_labels, query_images, query_labels) in enumerate(dataloader):
+            support_images = support_images.squeeze(0).to(device)  # shape: [k_way*n_support, C, H, W]
+            support_labels = support_labels.squeeze(0).to(device)
+            query_images = query_images.squeeze(0).to(device)      # shape: [k_way*n_query, C, H, W]
+            query_labels = query_labels.squeeze(0).to(device)
+
+            # Compute embeddings for support and query images.
+            embeddings_support = model(support_images)            # shape: [k_way*n_support, z_dim]
+            embeddings_query = model(query_images)                # shape: [k_way*n_query, z_dim]
+
+            # Compute prototypes (mean embedding support) for each class.
+            embedding_dim = embeddings_support.size(-1)
+            embeddings_support = embeddings_support.view(k_way, n_support, embedding_dim)
+            prototypes = embeddings_support.mean(dim=1)           # shape: [k_way, z_dim]
+
+            # Compute distances and obtain predictions with softmax.
+            distances = (embeddings_query.unsqueeze(1) - prototypes.unsqueeze(0)).pow(2).sum(dim=2)  # [k_way*n_query, k_way]
+            logits = -distances
+            pred_labels = logits.argmax(dim=1)
+
+            # Calculate accuracy for this episode.
+            acc = (pred_labels == query_labels).float().mean().item()
+            total_acc += acc
+            total_episodes += 1
+
+            if total_episodes >= test_episodes:
+                break
+
+    avg_acc = total_acc / total_episodes
+    return avg_acc
+
+
+Get the accuracy results on the Omniglot evaluation set
+
+
+
+# Create episodic test dataset using the evaluation set (background=False).
+test_dataset = OmniglotEpisodicDataset(
+    root=data_root,
+    transform=transform,
+    k_way=k_way,
+    n_support=n_support,
+    n_query=n_query,
+    background=False  # use the evaluation set for testing
+)
+
+test_loader = DataLoader(test_dataset, batch_size=1, shuffle=True)
+
+test_acc = evaluate(model, test_loader, device)
+print(f"\nTest Accuracy over {test_episodes} episodes: {test_acc*100:.2f}%")
+
+
+
+Answer the following questions:
+* For the given dataset, why do you think that episodic learning outperforms standard training (i.e., with all the training set)?
+* Make experiments changing the values K=3 and K=10 and write the conclusions.
