@@ -223,3 +223,51 @@ Y este es el material teórico completo es el siguiente:
   
 "
 
+
+---------------------------------------------------------
+
+
+## HACER TAREA GPT ##
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad. 
+
+ 
+  
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+Debes de darme todo lo necesario para completar de forma completa el Exercise 2,
+lo cual incluye que me des cosas como muchos ejemplos de prompts (con el mismo formato
+que vienen en el ejemplo), que el listado de prompts que me des sirva para comprobar
+si el orden de los "samples" y el balance de las clases afecta al resultado, así
+como otras cosas que deberás de tener en cuenta para completar de forma completa
+el Exercise 2.
+  
+"
+
+
+Te adjunto la siguiente información: 
+ 
+  
+---- INFORMACIÓN COMPLETA DEL EXERCISE 2 ----
+
+
+
+ 
+   
+    
+
+
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
