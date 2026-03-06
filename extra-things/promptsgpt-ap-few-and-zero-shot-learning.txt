@@ -183,3 +183,43 @@ Piensa paso por paso y a tu máxima capacidad.
 
 
 
+---------------------------------------------------------
+
+
+## COMPROBAR EL CORRECTO FUNCIONAMIENTO DE TODO ##
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad.
+
+
+A partir de todo el código que te adjunto en este mensaje, debes de indicarme
+si todos los requerimientos y todos los ejercicios se cumplen de forma correcta
+o si por el contrario notas que aún falta algo por hacer o si encuentras algún problema, error o incongruencia
+
+
+El código completo actual es el siguiente:
+ 
+  
+   
+" 
+
+  
+  
+"
+
+
+Y este es el material teórico completo es el siguiente: 
+
+ 
+" 
+ 
+  
+"
+
