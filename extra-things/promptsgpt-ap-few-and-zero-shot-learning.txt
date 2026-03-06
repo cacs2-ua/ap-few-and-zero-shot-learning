@@ -429,9 +429,106 @@ Te adjunto la siguiente información:
 
 ---- MATERIAL TEÓRICO CORRESPONDIENTE ----  
  
+
+
+
+
+
+---------------------------------------------------------
+
+
+## ESCRIBIR EL TEXTO DE LA TASK DEL GPT ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad. 
+
+ 
+  
+En base a todo esto, tu tarea es la siguiente:  
+ 
+  
+Debes de darme todo el texto correspondiente para responder de forma 
+completa al Exercise 2. Debes de darme la respuesta de forma ordenada
+y estructurada. Debes de emplear un registro formal y académico.
+
+En cuanto a los resultados obtenidos, en todos los experimentos el modelo
+ChatGPT 5 Auto ha acertado todos los inputs de forma correcta.
+Para realizar el experimento de forma correcta, en todo momento
+se ha empleado la opción de "Chats temporales" de ChatGPT para así evitar
+que el modelo se sesgase. Dentro de cada Pipeline, cada una de las 6 queries 
+se ha probado de forma aislada en un chat temporal diferente para así evitar problemas
+de sesgo y asegurar la mayor fiabilidad posible.
+
+
+ 
+Te adjunto la siguiente información: 
+ 
+  
+---- INFORMACIÓN COMPLETA DEL EXERCISE 2 ----
+ 
+  
+
+ 
+
+---- (MUY IMPORTANTE) LAS INDICACIONES COMPLETAS QUE ME HABÍAS 
+DADO PARA COMPLETAR DE FORMA COMPLETA EL EXERCISE 2 ----   
+ 
+  
+
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----  
+ 
   
    
 
 
+   
+
+
   
+
+------------------
+
+
+## TRANSFORMAR TEXTO A LATEX ## 
+ 
+
+Supón que eres un experto en LaTeX
+ 
+  
+
+
+Piensa paso por paso y a tu máxima capacidad
+
+
+ 
+  
+Dame las respuestas en inglés. 
+
+
+
+
+
+
+
+
+
+Transfórmame de forma apropiada el siguiente texto a código LaTeX: 
+ 
+  
+   
+" 
+ 
+  
+   
+"
 
