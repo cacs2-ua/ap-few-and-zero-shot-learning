@@ -66,7 +66,7 @@ Te adjunto también la siguiente información:
 ----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
  
  
- 
+
 
 
  
@@ -145,6 +145,9 @@ Te adjunto también la siguiente información:
  
   
 
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
 
 
  
@@ -156,11 +159,6 @@ Te adjunto también la siguiente información:
 
  
  
------ CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
- 
- 
- 
-
 
 
 
@@ -199,27 +197,241 @@ Dame las respuestas en inglés.
 Piensa paso por paso y a tu máxima capacidad.
 
 
-A partir de todo el código que te adjunto en este mensaje, debes de indicarme
+A partir de todo el código y de los resultados
+de ejecutar cada una de las celdas de código que te adjunto en este mensaje, debes de indicarme
 si todos los requerimientos y todos los ejercicios se cumplen de forma correcta
 o si por el contrario notas que aún falta algo por hacer o si encuentras algún problema, error o incongruencia
 
 
-El código completo actual es el siguiente:
+Te adjunto también la siguiente información: 
+ 
+
+---- REQUERIMIENTOS DE LA PRÁCTICA ----
+ 
+  
+
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
+
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
+ 
+  
+
+
+ 
+
+---------------------------------------------------------
+
+
+## DESARROLLAR TEXTO RESPUESTA ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad.
+
+ 
+ 
+ 
+Al final de este mensaje te he adjuntado un texto correspondiente a un PDF con material teórico importante para la práctica.
+ 
+ 
+Asimismo, al final de este prompt te adjunto todo el código de un archivo .ipynb de la práctica la cual contiene toda la información acerca de las tareas a realizar.
+
+
+
+ 
+ 
+ 
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+ 
+
+ 
+"
+
+ 
+ 
+---- IMPORTANTE ----
+
+Debes de darme la respuesta a dicha tarea para que pueda copiar 
+y pegarla en un archivo .txt
+
+Debes de darme la respuesta en forma de párrafo. Debes de emplear un registro académico y riguroso.
+
+Debes de asegurarte de que la respuesta que me das sea coherente con los ejemplos que aparecen en el PDF del material teórico que te he adjuntado. 
+ 
+ 
+ 
+Te adjunto también la siguiente información: 
+ 
+
+---- REQUERIMIENTOS DE LA PRÁCTICA ----
+ 
+  
+
+ 
+ 
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
+
+
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
+ 
+  
+
+
+---------------------------------------------------------
+
+
+## MEJORAR LA ACCURACY ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad.
+
+
+
+Al final de este mensaje te he adjuntado un texto correspondiente a un PDF con material teórico importante para la práctica.
+ 
+ 
+Asimismo, al final de este prompt te adjunto todo el código de un archivo .ipynb de la práctica la cual contiene toda la información acerca de las tareas a realizar.
+
+
+
+ 
+ 
+ 
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+Debes de modificar el código para aumentar lo máximo possible
+la accuracy obtenida.
+
+---- IMPORTANTE ----
+ 
+  
+Asegúrate de no realizar ningún cambio que contradiga algún requisito
+de la práctica. Todos y cada uno de los requisitos de la práctica
+deben de seguir quedando completamente satisfechos de forma correcta.
+
+
+
+Debes de indicarme con exactitud todos los cambios que debo de hacer en el código
+para mejorar lo máximo posible la accuracy obtenida, tanto de
+supervised learning como del self-supervised learning.
+
+Actualmente, el supervised learning obtiene una accuracy del 73.78%,
+y el self-supervised learning obtiene una accuracy del 79.66%
+
+
+
+ 
+"
+ 
+
+  
+Te adjunto también la siguiente información: 
+ 
+
+---- REQUERIMIENTOS DE LA PRÁCTICA ----
+ 
+  
+
+ 
+ 
+----- CÓDIGO .IPYNB INICIAL DE LA PRÁCTICA -----
+ 
+ 
+
+
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----
+ 
+
+
+
+
+
+
+---------------------------------------------------------
+
+
+## HACER LA TASK DEL GPT ##
+ 
+
+
+Supón que eres un experto en Inteligencia Artificial.
+ 
+ 
+Dame las respuestas en inglés.
+ 
+ 
+ 
+ 
+Piensa paso por paso y a tu máxima capacidad. 
+
+ 
+  
+En base a todo esto, tu tarea es la siguiente: 
+
+ 
+ 
+"
+Debes de darme todo lo necesario para completar de forma completa el Exercise 2,
+lo cual incluye que me des cosas como muchos ejemplos de prompts (con el mismo formato
+que vienen en el ejemplo), que el listado de prompts que me des sirva para comprobar
+si el orden de los "samples" y el balance de las clases afecta al resultado, así
+como otras cosas que deberás de tener en cuenta para completar de forma completa
+el Exercise 2.
+  
+"
+
+
+Te adjunto la siguiente información: 
+ 
+  
+---- INFORMACIÓN COMPLETA DEL EXERCISE 2 ----
+ 
+  
+
+ 
+
+---- MATERIAL TEÓRICO CORRESPONDIENTE ----  
  
   
    
-" 
+
 
   
-  
-"
-
-
-Y este es el material teórico completo es el siguiente: 
-
- 
-" 
- 
-  
-"
 
