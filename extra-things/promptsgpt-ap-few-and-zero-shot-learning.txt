@@ -532,3 +532,53 @@ Transfórmame de forma apropiada el siguiente texto a código LaTeX:
    
 "
 
+------------------
+
+
+## ESCRIBIR ALGO BIEN LATEX ## 
+ 
+
+Supón que eres un experto en LaTeX
+ 
+  
+
+
+Piensa paso por paso y a tu máxima capacidad
+
+
+ 
+  
+Dame las respuestas en inglés. 
+
+
+
+
+Agrega al final de este párrafo otro párrafo que diga alGo del estilo:
+
+" 
+ 
+  
+
+
+" 
+ 
+  
+Este es el párrafo despues del cual debes de poner eso:
+ 
+   
+" 
+ 
+  
+"
+ 
+  
+   
+Y este es el documento completo:
+ 
+  
+   
+" 
+ 
+  
+   
+"
